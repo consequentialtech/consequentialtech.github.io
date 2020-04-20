@@ -1,0 +1,20 @@
+{
+    "name": "Consequential Technologies",
+    "short_name": "Consequential Technologies",
+    "icons": [
+        {
+            "src": "/assets/android-chrome-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/assets/android-chrome-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#336699",
+    "background_color": "#336699",
+    "start_url": "https://consequential.tech",
+    "display": "standalone"
+}
