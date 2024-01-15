@@ -1,10 +1,16 @@
 <!DOCTYPE html>
-<html lang="{{ page.lang | default: site.lang | default: "en" }}">
-
+<html lang="{{ page.lang | default: site.lang | default: 'en' }}">
   {%- include head.html -%}
 
-  <body style="background-color: #336699; background-image: url('/assets/images/consequentialtech.png'); background-repeat: no-repeat; background-attachment: fixed; background-position: center;">
-
-  </body>
-
+  <body
+    style="
+      background-color: #336699;
+      background-image: url('/assets/images/consequentialtech.png');
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-position: center;
+      background-size: contain;
+    "
+    onclick="window.location.href='https://www.linkedin.com/in/drwahl/';"
+  ></body>
 </html>
