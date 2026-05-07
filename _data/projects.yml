@@ -142,7 +142,7 @@
 - id: hdt-tactors-marasco
   section: foundational
   manipulation_relevant: true
-  title: Tactors — Marasco lab haptic feedback
+  title: Tactors for prosthetic feedback
   client: HDT Robotics + Cleveland Clinic
   year: "2014-2018"
   # 12s clip + poster encoded from Marasco lab's public YouTube (genr9mGC9NQ).
