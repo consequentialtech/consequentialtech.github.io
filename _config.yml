@@ -1,15 +1,15 @@
 title:            Consequential Technologies, LLC
 email:            drwahl@consequential.tech
-description:      "Robotics consulting — classical manipulation stacks and learned dexterous policies."
+description:      "Robotics consulting."
 baseurl:          ""
 url:              "https://consequential.tech"
-github_username:  consequentialtech
+github_username:  danwahl
 google_analytics: UA-163901255-1
 
 # Portfolio hero
 author:           Daniel Wahl
 role:             "Founder &middot; Consequential Technologies, LLC"
-tagline:          "Robotics consultant with ~20 years of experience building manipulation systems — ROS 2 / MoveIt / MuJoCo today, learned VLA policies tomorrow."
+tagline:          "Robotics consultant with ~20 years of experience building manipulation systems."
 linkedin:         "https://www.linkedin.com/in/drwahl/"
 
 markdown:         kramdown
