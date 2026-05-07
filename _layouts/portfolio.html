@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: 'en' }}">
+  {%- include head.html -%}
+  <body class="portfolio-body">
+    <main class="portfolio">
+      <section class="hero">
+        <div class="hero__brand">
+          <img src="{{ '/assets/images/consequentialtech.png' | relative_url }}" alt="Consequential Technologies" class="hero__logo">
+          <div class="hero__text">
+            <h1 class="hero__name">{{ site.author | default: site.title }}</h1>
+            {%- if site.role -%}<p class="hero__role">{{ site.role }}</p>{%- endif -%}
+            {%- if site.tagline -%}<p class="hero__tagline">{{ site.tagline }}</p>{%- endif -%}
+            <p class="hero__contact">
+              {%- if site.email -%}<a href="mailto:{{ site.email }}">{{ site.email }}</a>{% endif %}
+              {% if site.linkedin %} &middot; <a href="{{ site.linkedin }}" target="_blank" rel="noopener">LinkedIn</a>{% endif %}
+              {% if site.github_username %} &middot; <a href="https://github.com/{{ site.github_username }}" target="_blank" rel="noopener">GitHub</a>{% endif %}
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {%- assign section_keys = "consulting,ai,foundational,other" | split: "," -%}
+      {%- assign section_titles = "Recent consulting,AI / VLA exploration,Foundational depth,Other work" | split: "," -%}
+
+      {%- for key in section_keys -%}
+        {%- assign idx = forloop.index0 -%}
+        {%- assign in_section = site.data.projects | where: "section", key -%}
+        {%- if in_section.size > 0 -%}
+          <section class="section">
+            <h2 class="section__title">{{ section_titles[idx] }}</h2>
+            {%- assign lede_var = "section_lede_" | append: key -%}
+            {%- assign lede = site[lede_var] -%}
+            {%- if lede -%}<p class="section__lede">{{ lede }}</p>{%- endif -%}
+            <div class="grid">
+              {%- assign mr = in_section | where: "manipulation_relevant", true -%}
+              {%- for project in mr -%}
+                {%- include project_card.html project=project -%}
+              {%- endfor -%}
+              {%- for project in in_section -%}
+                {%- unless project.manipulation_relevant == true -%}
+                  {%- include project_card.html project=project -%}
+                {%- endunless -%}
+              {%- endfor -%}
+            </div>
+          </section>
+        {%- endif -%}
+      {%- endfor -%}
+
+      {%- if site.data.publications and site.data.publications.size > 0 -%}
+        <section class="section">
+          <h2 class="section__title">Selected publications &amp; patents</h2>
+          <ul class="publist">
+            {%- for pub in site.data.publications -%}
+              <li class="publist__item">
+                {%- if pub.link -%}<a href="{{ pub.link }}" target="_blank" rel="noopener">{{ pub.title }}</a>{%- else -%}<span class="publist__title">{{ pub.title }}</span>{%- endif -%}
+                {%- if pub.authors %} &middot; <span class="publist__meta">{{ pub.authors }}</span>{% endif -%}
+                {%- if pub.venue %} &middot; <span class="publist__meta">{{ pub.venue }}</span>{% endif -%}
+                {%- if pub.year %} &middot; <span class="publist__meta">{{ pub.year }}</span>{% endif -%}
+              </li>
+            {%- endfor -%}
+          </ul>
+        </section>
+      {%- endif -%}
+
+      <footer class="site-footer">
+        <p>&copy; {{ site.time | date: "%Y" }} {{ site.title }}{% if site.email %} &middot; <a href="mailto:{{ site.email }}">{{ site.email }}</a>{% endif %}</p>
+      </footer>
+    </main>
+    <script>
+      (function () {
+        var videos = document.querySelectorAll('.card__media--hover');
+        if (videos.length === 0) return;
+
+        // Match the same breakpoint the CSS grid uses (≥768px is 2-col).
+        // Below that, fall into scroll-to-play mode; otherwise, use hover.
+        var narrowMQ = window.matchMedia('(max-width: 767px)');
+        var isNarrow = function () { return narrowMQ.matches; };
+
+        var safePlay = function (v) {
+          var p = v.play();
+          if (p && typeof p.catch === 'function') p.catch(function () {});
+        };
+
+        var pauseAll = function () {
+          videos.forEach(function (v) {
+            if (!v.paused) {
+              v.pause();
+              v.currentTime = 0;
+            }
+          });
+        };
+
+        // Toggle the playing class on play/pause — unifies the overlay
+        // fade across both hover and scroll-to-play modes.
+        videos.forEach(function (video) {
+          var wrap = video.closest('.card__media-wrap');
+          if (!wrap) return;
+          video.addEventListener('play', function () {
+            wrap.classList.add('card__media-wrap--playing');
+          });
+          video.addEventListener('pause', function () {
+            wrap.classList.remove('card__media-wrap--playing');
+          });
+        });
+
+        // Hover handlers (only act when wide / multi-column).
+        // Reset currentTime BEFORE play() and only pause() on leave —
+        // pause+seek-after sequences trigger AbortError on the pending
+        // play promise and leave the element in a half-loaded state.
+        videos.forEach(function (video) {
+          var wrap = video.closest('.card__media-wrap');
+          if (!wrap) return;
+          wrap.addEventListener('mouseenter', function () {
+            if (isNarrow()) return;
+            try { video.currentTime = 0; } catch (e) {}
+            safePlay(video);
+          });
+          wrap.addEventListener('mouseleave', function () {
+            if (!isNarrow()) video.pause();
+          });
+        });
+
+        // IntersectionObserver — controls playback in single-column.
+        if ('IntersectionObserver' in window) {
+          var ratios = new Map();
+          var current = null;
+
+          var update = function () {
+            if (!isNarrow()) return;
+            var leader = null;
+            var max = 0;
+            ratios.forEach(function (r, video) {
+              if (r > max) { max = r; leader = video; }
+            });
+            if (max < 0.5) leader = null;
+            if (leader === current) return;
+            videos.forEach(function (v) {
+              if (v !== leader && !v.paused) v.pause();
+            });
+            if (leader) safePlay(leader);
+            current = leader;
+          };
+
+          var observer = new IntersectionObserver(function (entries) {
+            entries.forEach(function (e) {
+              ratios.set(e.target, e.intersectionRatio);
+            });
+            update();
+          }, { threshold: [0, 0.25, 0.5, 0.75, 1] });
+
+          videos.forEach(function (v) {
+            ratios.set(v, 0);
+            observer.observe(v);
+          });
+
+          // On layout transitions, pause everything and let the active
+          // mode (hover or observer) reclaim playback on next interaction.
+          var onChange = function () {
+            pauseAll();
+            current = null;
+            if (isNarrow()) update();
+          };
+          if (typeof narrowMQ.addEventListener === 'function') {
+            narrowMQ.addEventListener('change', onChange);
+          } else if (typeof narrowMQ.addListener === 'function') {
+            narrowMQ.addListener(onChange);
+          }
+        }
+      })();
+    </script>
+  </body>
+</html>

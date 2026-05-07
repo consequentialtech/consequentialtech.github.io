@@ -1,0 +1,212 @@
+# Project data for portfolio.
+#
+# Schema (see _includes/project_card.html for rendering logic):
+#   - id:                    short slug (unique)
+#     section:               consulting | ai | foundational | other
+#     manipulation_relevant: true | false   # floats to top within section
+#     title:                 short project name
+#     client:                company / context
+#     year:                  "2024" or "2018-2020" etc.
+#     hero:                  /assets/images/projects/<file>            (16:9 ideal)
+#     video_local:           /assets/videos/projects/<file>.webm|mp4   (autoplay+muted+loop)
+#     video_poster:          /assets/images/projects/<file>            (poster frame for video)
+#     video_embed:           raw <iframe ...></iframe> string          (overrides hero, NOT video_local)
+#     link:                  publicly hosted URL on the client's site / YouTube / etc.
+#     role:                  "Led the X subsystem"
+#     summary:               1-3 sentences: what I did + what was hard
+#     tech:                  [ROS 2, MoveIt, MuJoCo, ...]
+#
+# DRAFT entries below — every summary/role line is a starting point. Edit freely.
+# Items marked TODO need an asset (image or video) before they look right.
+
+# ─────────────────────────────────────────────────────────────────────
+# Recent consulting (manipulation-relevant floats up)
+# ─────────────────────────────────────────────────────────────────────
+
+- id: picknik-satellite-grapple
+  section: consulting
+  manipulation_relevant: true
+  title: Autonomous satellite capture
+  client: PickNik Robotics
+  year: "2024"
+  # 15s clip + poster encoded from PickNik's public YouTube demo (cXPxmTFx4hQ).
+  # Click falls through to the PickNik blog post for the full story.
+  video_local: /assets/videos/projects/picknik_satellite_grapple.webm
+  video_poster: /assets/images/projects/picknik_satellite_grapple.jpg
+  link: "https://picknik.ai/2024/06/14/Compliant-Grappling-using-a-RAFTI.html"
+  role: "Created MoveIt Pro integration and simulation environment."
+  summary: "Visual servoing + admittance control to grapple a moving satellite mockup with a space-qualified arm. AprilTag-driven state estimation feeds a Fuse-tracked target."
+  tech: [MoveIt Pro, ROS 2, MuJoCo, admittance control, AprilTag, Fuse]
+
+- id: picknik-mujoco-sim
+  section: consulting
+  manipulation_relevant: true
+  title: MuJoCo simulation environment
+  client: PickNik Robotics
+  year: "2024-2025"
+  # 18s clip + poster from a hangar-sim screen capture showing the
+  # 3D LiDAR point cloud building up around a Clearpath Ridgeback.
+  video_local: /assets/videos/projects/picknik_mujoco_lidar.webm
+  video_poster: /assets/images/projects/picknik_mujoco_lidar.jpg
+  link: "https://docs.picknik.ai/how_to/mobile_navigation/nav2_mobile_navigation/"
+  role: "Contributed to PickNik's broader ROS 2 / MuJoCo integration."
+  summary: "Sensor plugins, configuration tooling, and integration glue underpinning MoveIt Pro's MuJoCo simulation, including the 3D LiDAR sensor in the hangar scene shown here."
+  tech: [MuJoCo, ROS 2, MoveIt Pro, 3D LiDAR, Nav2]
+
+- id: outrider-trailerconnect
+  section: consulting
+  manipulation_relevant: true
+  title: TrailerConnect
+  client: Outrider
+  year: "2018-2024"
+  # 12s clip from Outrider's public marketing video (Md5uL2ffznQ) — arm
+  # motion at 0:50-1:02. Encoded at 360p/24fps/bt709 to match the rest.
+  video_local: /assets/videos/projects/outrider_trailerconnect.webm
+  video_poster: /assets/images/projects/outrider_trailerconnect.jpg
+  link: "https://www.outrider.ai/blog/technology/the-tale-of-trailerconnect/"
+  role: "Wrote large sections of the TrailerConnect codebase."
+  summary: "Deep-learning-driven robotic arm that connects brake lines between yard trucks and gladhands in real industrial conditions. Now in commercial deployment with 100k+ autonomous trailer moves."
+  tech: [ROS, deep learning, computer vision, Yaskawa, perception]
+
+# ─────────────────────────────────────────────────────────────────────
+# AI / VLA exploration
+# ─────────────────────────────────────────────────────────────────────
+
+- id: vla-microwave-finetune
+  section: ai
+  manipulation_relevant: true
+  title: Open-VLA fine-tuning study
+  client: Personal research
+  year: "2026"
+  # TODO: drop a side-by-side webm (pre vs post fine-tuning) when ready.
+  # video_local: /assets/videos/projects/vla_microwave.webm
+  # video_poster: /assets/images/projects/vla_microwave.jpg
+  # hero: /assets/images/projects/vla_microwave.jpg  # TODO
+  role: "Currently exploring."
+  summary: "End-to-end pipeline from open-source VLA checkpoint to fine-tuned policy on a household manipulation task (microwave open). Baseline vs. fine-tuned comparison across multiple model families, run as a self-test of the open-VLA workflow."
+  tech: [pi-zero, GR00T, OpenVLA, fine-tuning, LIBERO]
+
+- id: cadqueryeval
+  section: ai
+  manipulation_relevant: false
+  title: CadQueryEval
+  client: Open source
+  year: "2025-2026"
+  hero: /assets/images/projects/cadqueryeval.png
+  link: "https://github.com/danwahl/cadqueryeval"
+  role: "Built and maintain."
+  summary: "Benchmark for evaluating LLMs on parametric CAD generation via CadQuery. Tests whether a model can produce runnable, geometrically-correct part definitions from natural-language prompts."
+  tech: [Python, CadQuery, evaluation, LLMs]
+
+- id: gemini-mcp
+  section: ai
+  manipulation_relevant: false
+  title: Gemini CLI MCP plugin
+  client: Open source
+  year: "2025"
+  link: "https://github.com/danwahl/gemini-cli-mcp"
+  role: "Author."
+  summary: "MCP server exposing the Gemini CLI to Claude Code (and any other MCP client), enabling cross-model handoffs from inside a single agent loop."
+  tech: [MCP, Python, Gemini, Claude]
+
+- id: grpo-rl-collab
+  section: ai
+  manipulation_relevant: true
+  title: GRPO RL post-training
+  client: "TODO — friend's lab, U Chicago"
+  year: "2025"
+  hero: /assets/images/projects/grpo.png
+  role: "Consultant."
+  summary: "Hands-on collaboration on GRPO-style RL post-training. Replicated existing experiments and contributed to the development of new training protocols."
+  tech: [GRPO, RL post-training, PyTorch]
+
+# ─────────────────────────────────────────────────────────────────────
+# Foundational depth (HDT)
+# ─────────────────────────────────────────────────────────────────────
+
+- id: hdt-adroit-manipulators
+  section: foundational
+  manipulation_relevant: true
+  title: Adroit dual-arm manipulators
+  client: HDT Robotics (now BLADE)
+  year: "2014-2018"
+  # 13s dual-arm hammer-drill clip from HDT's public YouTube (P_YOwnbC_hM).
+  video_local: /assets/videos/projects/hdt_adroit_manipulators.webm
+  video_poster: /assets/images/projects/hdt_adroit_manipulators.jpg
+  link: "https://www.hdtrobotics.com/products/"
+  role: "Wrote the motor control and teleoperation code; drove the demos."
+  summary: "Dexterous bimanual Adroit manipulators originally derived from prosthetic-arm hardware."
+  tech: [Adroit, dual-arm manipulation, teleop, force control]
+
+- id: hdt-tactors-marasco
+  section: foundational
+  manipulation_relevant: true
+  title: Tactors — Marasco lab haptic feedback
+  client: HDT Robotics + Cleveland Clinic
+  year: "2014-2018"
+  # 12s clip + poster encoded from Marasco lab's public YouTube (genr9mGC9NQ).
+  # Click falls through to the Marasco lab page.
+  video_local: /assets/videos/projects/hdt_tactors_marasco.webm
+  video_poster: /assets/images/projects/hdt_tactors_marasco.jpg
+  link: "https://www.lerner.ccf.org/biomedical-engineering/marasco/"
+  role: "Lead software engineer."
+  summary: "HDT Tactors deliver multichannel haptic feedback for bionic-integration research at Cleveland Clinic, restoring intuitive touch sensation to amputees through targeted vibration on reinnervated skin."
+  tech: [haptic feedback, prosthetics, sensory neuroengineering]
+
+- id: hdt-kineassist
+  section: foundational
+  manipulation_relevant: false
+  title: KineAssist
+  client: HDT Robotics
+  year: "2014-2018"
+  # 10s dynamic-running clip from HDT's public KineAssist video (HJ592W3H1f8).
+  video_local: /assets/videos/projects/hdt_kineassist.webm
+  video_poster: /assets/images/projects/hdt_kineassist.jpg
+  link: "https://www.hdtglobal.com/2014/03/25/hdt-globals-kineassist-robot-advanced-therapy-system-for-gait-and-balance-recovery/"
+  role: "Software developer."
+  summary: "Robotic gait and balance trainer, including partial body-weight support with admittance-style force following, catching the patient if they fall."
+  tech: [haptic control, force sensing, admittance control, rehabilitation]
+
+- id: hdt-hunter-wolf
+  section: foundational
+  manipulation_relevant: false
+  title: Hunter WOLF UGV
+  client: HDT Global
+  year: "2014-2018"
+  # 10s clip from HDT's recent product video (YP1QgGGVaUQ).
+  video_local: /assets/videos/projects/hdt_hunter_wolf.webm
+  video_poster: /assets/images/projects/hdt_hunter_wolf.jpg
+  link: "https://www.hdtglobal.com/product/hdt-hunter-wolf/"
+  role: "Software developer."
+  summary: "Hybrid-electric unmanned ground vehicle with 1,000 kg payload. Selected by the U.S. Army for the S-MET Increment II program, currently in production."
+  tech: [UGV, hybrid drive, autonomy, defense]
+
+# ─────────────────────────────────────────────────────────────────────
+# Other work / career snapshots
+# ─────────────────────────────────────────────────────────────────────
+
+- id: prosthetics-early
+  section: other
+  manipulation_relevant: false
+  title: Early prosthetics work
+  client: Personal / APL
+  year: "2010-2014"
+  # 12s clip from the early prosthetics-era demo footage.
+  video_local: /assets/videos/projects/prosthetics_early.webm
+  video_poster: /assets/images/projects/prosthetics_early.jpg
+  role: "Lead software engineer."
+  summary: "Early prosthetic-arm research that fed into the Adroit family later at HDT."
+  tech: [prosthetics, dexterous manipulation]
+
+- id: vehicle-follow-me
+  section: other
+  manipulation_relevant: false
+  title: Protector UGV
+  client: HDT Robotics
+  year: "2010-2014"
+  # 10s clip of the Protector UGV following on a wet parking lot. Predecessor to Hunter WOLF.
+  video_local: /assets/videos/projects/follow_me.webm
+  video_poster: /assets/images/projects/follow_me.jpg
+  role: "Lead software engineer."
+  summary: "Protector tracked UGV — HDT's earlier-generation 'follow-me' platform that informed today's Hunter WOLF."
+  tech: [UGV, follow-me, autonomy, perception]

@@ -1,0 +1,56 @@
+{%- assign p = include.project -%}
+<article class="card">
+  {%- if p.video_local -%}
+    {%- assign ext = p.video_local | split: "." | last -%}
+    {%- assign poster = p.video_poster | default: p.hero -%}
+    {%- if p.link -%}
+    <a href="{{ p.link }}" target="_blank" rel="noopener" class="card__media-wrap" aria-label="{{ p.title }}">
+    {%- else -%}
+    <div class="card__media-wrap">
+    {%- endif -%}
+      <video class="card__media card__media--hover" muted playsinline loop preload="auto"
+             {% if poster %}poster="{{ poster | relative_url }}"{% endif %}>
+        <source src="{{ p.video_local | relative_url }}" type="video/{{ ext }}">
+      </video>
+      <div class="card__media-overlay" aria-hidden="true"></div>
+    {%- if p.link -%}</a>{%- else -%}</div>{%- endif -%}
+  {%- elsif p.video_embed -%}
+    <div class="card__media card__media--embed">{{ p.video_embed }}</div>
+  {%- elsif p.hero -%}
+    {%- if p.link -%}
+      <a href="{{ p.link }}" target="_blank" rel="noopener" aria-label="{{ p.title }}">
+        <img src="{{ p.hero | relative_url }}" alt="{{ p.title }}" class="card__media" loading="lazy">
+      </a>
+    {%- else -%}
+      <img src="{{ p.hero | relative_url }}" alt="{{ p.title }}" class="card__media" loading="lazy">
+    {%- endif -%}
+  {%- else -%}
+    {%- if p.link -%}
+      <a href="{{ p.link }}" target="_blank" rel="noopener" aria-label="{{ p.title }}" class="card__media-placeholder-link">
+        <div class="card__media-placeholder">
+          <span class="card__placeholder-eyebrow">{{ p.client }}</span>
+          <span class="card__placeholder-title">{{ p.title }}</span>
+        </div>
+      </a>
+    {%- else -%}
+      <div class="card__media-placeholder">
+        <span class="card__placeholder-eyebrow">{{ p.client }}</span>
+        <span class="card__placeholder-title">{{ p.title }}</span>
+      </div>
+    {%- endif -%}
+  {%- endif -%}
+  <div class="card__body">
+    <h3 class="card__title">{{ p.title }}</h3>
+    <p class="card__client">{{ p.client }}{% if p.year %} &middot; {{ p.year }}{% endif %}</p>
+    {%- if p.role -%}<p class="card__role">{{ p.role }}</p>{%- endif -%}
+    {%- if p.summary -%}<p class="card__summary">{{ p.summary }}</p>{%- endif -%}
+    {%- if p.tech and p.tech.size > 0 -%}
+      <ul class="card__tags">
+        {%- for t in p.tech -%}<li class="tag">{{ t }}</li>{%- endfor -%}
+      </ul>
+    {%- endif -%}
+    {%- if p.link -%}
+      <a href="{{ p.link }}" class="card__link" target="_blank" rel="noopener">Learn more &rarr;</a>
+    {%- endif -%}
+  </div>
+</article>

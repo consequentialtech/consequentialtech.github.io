@@ -1,3 +1,4 @@
 ---
-layout: splash
+layout: portfolio
+title: Robotics Portfolio
 ---

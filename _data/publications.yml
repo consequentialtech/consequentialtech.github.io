@@ -1,0 +1,26 @@
+# Publications & patents.
+#
+# Schema:
+#   - title:    Title of chapter / paper / patent
+#     venue:    "Book or Journal Name (Publisher, Year)" or "US Patent 1,234,567"
+#     year:     "2018"
+#     authors:  "Wahl, D., et al."  (optional)
+#     link:     URL  (optional)
+#
+# Listed top-to-bottom in the order shown here.
+
+- title: "The Modular Prosthetic Limb"
+  authors: "Johannes, M. S., et al. (incl. Wahl, D.)"
+  venue: "Wearable Robotics, Ch. 21 (Elsevier)"
+  year: "2019"
+  link: "https://www.sciencedirect.com/science/article/abs/pii/B9780128146590000217"
+
+- title: "System and method for connection of service lines to trailer fronts by automated trucks"
+  venue: "US Patent 12,246,457 B2"
+  year: "2025"
+  link: "https://patents.google.com/patent/US12246457B2"
+
+- title: "High Degree of Freedom (DOF) Controller"
+  venue: "US Patent 9,575,504 B2"
+  year: "2017"
+  link: "https://patents.google.com/patent/US9575504B2"
