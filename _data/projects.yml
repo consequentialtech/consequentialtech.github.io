@@ -82,6 +82,7 @@
   # video_local: /assets/videos/projects/vla_microwave.webm
   # video_poster: /assets/images/projects/vla_microwave.jpg
   # hero: /assets/images/projects/vla_microwave.jpg  # TODO
+  link: "https://github.com/danwahl/arena-vla-lora"
   role: "Currently exploring."
   summary: "End-to-end pipeline from open-source VLA checkpoint to fine-tuned policy on a household manipulation task (microwave open). Baseline vs. fine-tuned comparison across multiple model families, run as a self-test of the open-VLA workflow."
   tech: [pi-zero, GR00T, OpenVLA, fine-tuning, LIBERO]
@@ -93,7 +94,7 @@
   client: Open source
   year: "2025-2026"
   hero: /assets/images/projects/cadqueryeval.png
-  link: "https://github.com/danwahl/cadqueryeval"
+  link: "https://danwahl.net/cadqueryeval/"
   role: "Built and maintain."
   summary: "Benchmark for evaluating LLMs on parametric CAD generation via CadQuery. Tests whether a model can produce runnable, geometrically-correct part definitions from natural-language prompts."
   tech: [Python, CadQuery, evaluation, LLMs]
@@ -113,7 +114,7 @@
   section: ai
   manipulation_relevant: true
   title: GRPO RL post-training
-  client: "TODO — friend's lab, U Chicago"
+  client: "University of Chicago DSI"
   year: "2025"
   hero: /assets/images/projects/grpo.png
   role: "Consultant."
