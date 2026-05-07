@@ -171,7 +171,7 @@
   section: foundational
   manipulation_relevant: false
   title: Hunter WOLF UGV
-  client: HDT Global
+  client: HDT Robotics
   year: "2014-2018"
   # 10s clip from HDT's recent product video (YP1QgGGVaUQ).
   video_local: /assets/videos/projects/hdt_hunter_wolf.webm
@@ -189,7 +189,7 @@
   section: other
   manipulation_relevant: false
   title: Early prosthetics work
-  client: Personal / APL
+  client: HDT Robotics / APL
   year: "2010-2014"
   # 12s clip from the early prosthetics-era demo footage.
   video_local: /assets/videos/projects/prosthetics_early.webm
@@ -208,5 +208,5 @@
   video_local: /assets/videos/projects/follow_me.webm
   video_poster: /assets/images/projects/follow_me.jpg
   role: "Lead software engineer."
-  summary: "Protector tracked UGV — HDT's earlier-generation 'follow-me' platform that informed today's Hunter WOLF."
+  summary: "Protector tracked UGV — HDT's earlier-generation platform that informed today's Hunter WOLF."
   tech: [UGV, follow-me, autonomy, perception]
