@@ -17,7 +17,6 @@
 #     tech:                  [ROS 2, MoveIt, MuJoCo, ...]
 #
 # DRAFT entries below — every summary/role line is a starting point. Edit freely.
-# Items marked TODO need an asset (image or video) before they look right.
 
 # ─────────────────────────────────────────────────────────────────────
 # Recent consulting (manipulation-relevant floats up)
@@ -72,20 +71,20 @@
 # AI / VLA exploration
 # ─────────────────────────────────────────────────────────────────────
 
-- id: vla-microwave-finetune
+- id: vla-so101-pi05
   section: ai
   manipulation_relevant: true
-  title: Open-VLA fine-tuning study
+  title: Sim-to-real VLA block stacking
   client: Personal research
   year: "2026"
-  # TODO: drop a side-by-side webm (pre vs post fine-tuning) when ready.
-  # video_local: /assets/videos/projects/vla_microwave.webm
-  # video_poster: /assets/images/projects/vla_microwave.jpg
-  # hero: /assets/images/projects/vla_microwave.jpg  # TODO
-  link: "https://github.com/danwahl/arena-vla-lora"
-  role: "Currently exploring."
-  summary: "End-to-end pipeline from open-source VLA checkpoint to fine-tuned policy on a household manipulation task (microwave open). Baseline vs. fine-tuned comparison across multiple model families, run as a self-test of the open-VLA workflow."
-  tech: [pi-zero, GR00T, OpenVLA, fine-tuning, LIBERO]
+  # 10s clip + poster from an original hardware rollout (20260830_015250.mp4,
+  # 3-13s), cut to end before the manual block reset. Poster is frame 0.
+  video_local: /assets/videos/projects/vla_so101_pi05.webm
+  video_poster: /assets/images/projects/vla_so101_pi05.jpg
+  link: "https://github.com/danwahl/vla-test"
+  role: "Built end to end."
+  summary: "LoRA fine-tune of a pi-0.5 vision-language-action policy that picks and stacks colored blocks on an SO-101 arm. Demonstrations come from a scripted oracle driving a ManiSkill 3 cell calibrated to the physical arm, plus a small dataset collected on the hardware to close the sim-to-real gap."
+  tech: [pi-0.5, LeRobot, ManiSkill 3, SO-101, LoRA, sim-to-real]
 
 - id: cadqueryeval
   section: ai
