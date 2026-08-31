@@ -74,11 +74,11 @@
 - id: vla-so101-pi05
   section: ai
   manipulation_relevant: true
-  title: Sim-to-real VLA block stacking
+  title: Sim-to-real VLA fine-tuning
   client: Personal research
   year: "2026"
-  # 10s clip + poster from an original hardware rollout (20260830_015250.mp4,
-  # 3-13s), cut to end before the manual block reset. Poster is frame 0.
+  # 12s clip + poster from an original hardware rollout (20260830_211437.mp4,
+  # 35-47s): one full episode between manual block resets. Poster is frame 0.
   video_local: /assets/videos/projects/vla_so101_pi05.webm
   video_poster: /assets/images/projects/vla_so101_pi05.jpg
   link: "https://github.com/danwahl/vla-test"
@@ -98,16 +98,16 @@
   summary: "Benchmark for evaluating LLMs on parametric CAD generation via CadQuery. Tests whether a model can produce runnable, geometrically-correct part definitions from natural-language prompts."
   tech: [Python, CadQuery, evaluation, LLMs]
 
-- id: gemini-mcp
-  section: ai
-  manipulation_relevant: false
-  title: Gemini CLI MCP plugin
-  client: Open source
-  year: "2025"
-  link: "https://github.com/danwahl/gemini-cli-mcp"
-  role: "Author."
-  summary: "MCP server exposing the Gemini CLI to Claude Code (and any other MCP client), enabling cross-model handoffs from inside a single agent loop."
-  tech: [MCP, Python, Gemini, Claude]
+# - id: gemini-mcp
+#   section: ai
+#   manipulation_relevant: false
+#   title: Gemini CLI MCP plugin
+#   client: Open source
+#   year: "2025"
+#   link: "https://github.com/danwahl/gemini-cli-mcp"
+#   role: "Author."
+#   summary: "MCP server exposing the Gemini CLI to Claude Code (and any other MCP client), enabling cross-model handoffs from inside a single agent loop."
+#   tech: [MCP, Python, Gemini, Claude]
 
 - id: grpo-rl-collab
   section: ai
